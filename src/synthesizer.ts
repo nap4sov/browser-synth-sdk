@@ -1,6 +1,6 @@
 import { ControlPanel, Mixer } from './modules';
 import { notes } from './constants';
-import { Notes, SynthesizerKeyboard } from './types';
+import { SynthOptions, SynthesizerKeyboard } from './types';
 
 export default class Synthesizer {
   private mixer: Mixer;
@@ -9,7 +9,7 @@ export default class Synthesizer {
 
   private keys: SynthesizerKeyboard;
 
-  constructor(audioContext: AudioContext, customNotes: Notes) {
+  constructor({ audioContext, customNotes }: SynthOptions) {
     const notesArray = customNotes.length ? customNotes : notes;
 
     this.mixer = new Mixer(
@@ -22,24 +22,30 @@ export default class Synthesizer {
 
     this.controlPanel = new ControlPanel(this.mixer);
 
-    this.keys = notesArray.reduce((acc, { note, freq }) => {
-      const oscillator = oscillators[freq];
-      return {
-        ...acc,
-        [note]: {
-          play: () => {
-            oscillator.setFrequency(freq);
-            oscillator.play();
+    this.keys = notesArray.reduce<SynthesizerKeyboard>(
+      (acc, { note, freq }) => {
+        const oscillator = oscillators[freq];
+        return {
+          ...acc,
+          [note]: {
+            play: () => {
+              oscillator.setFrequency(freq);
+              oscillator.play();
+            },
+            stop: () => {
+              oscillator.stop();
+            },
+            changeFrequency: (value) => {
+              oscillator.setFrequency(value || freq);
+            },
+            getFrequency: () => {
+              return freq;
+            },
           },
-          stop: () => {
-            oscillator.stop();
-          },
-          changeFrequency: () => {
-            oscillator.setFrequency(freq);
-          },
-        },
-      };
-    }, {});
+        };
+      },
+      {},
+    );
   }
 
   getKeys = () => {

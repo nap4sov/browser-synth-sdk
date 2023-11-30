@@ -1,7 +1,8 @@
 import Synthesizer from './synthesizer';
-import { Notes } from './types';
+import { SynthConfig } from './types';
 
-export const createSynthesizer = (notes?: Notes) => {
+export const createSynthesizer = ({ notes }: SynthConfig) => {
   const audioContext = new AudioContext();
-  return new Synthesizer(audioContext, notes || []);
+
+  return new Synthesizer({ audioContext, customNotes: notes || [] });
 };

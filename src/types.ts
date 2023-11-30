@@ -5,12 +5,22 @@ export declare type Synthesizer = SynthesizerClass;
 export declare interface IKeyboardKey {
   play: () => void;
   stop: () => void;
-  changeFrequency: () => void;
+  changeFrequency: (value?: number) => void;
+  getFrequency: () => number;
 }
 
 export declare type Notes = { note: string; freq: number }[];
 
 export declare type SynthesizerKeyboard = Record<string, IKeyboardKey>;
+
+export declare interface SynthOptions {
+  audioContext: AudioContext;
+  customNotes: Notes;
+}
+
+export declare interface SynthConfig {
+  notes?: Notes;
+}
 
 export declare interface ControlPanelState {
   master: {
