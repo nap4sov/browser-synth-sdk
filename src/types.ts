@@ -1,7 +1,3 @@
-import SynthesizerClass from './synthesizer';
-
-export declare type Synthesizer = SynthesizerClass;
-
 export declare interface IKeyboardKey {
   play: () => void;
   stop: () => void;
