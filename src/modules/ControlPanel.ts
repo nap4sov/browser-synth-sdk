@@ -18,7 +18,7 @@ export default class ControlPanel {
 
     this.state = {
       master: {
-        volume: 0,
+        volume: masterVolume.getLevel(),
       },
       oscillator: {
         waveform: oscillators[0].getWaveform(),

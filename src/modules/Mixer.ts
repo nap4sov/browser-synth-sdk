@@ -22,7 +22,7 @@ export default class Mixer {
     // connect master volume to mixer out
     this.masterVolume.connectParentNode(this.mixerOut);
 
-    this.masterVolume.setLevel(1);
+    this.masterVolume.setLevel(0.8);
 
     this.oscillators = oscillatorFrequencies.reduce((acc, freq) => {
       const osc = new Oscillator(synthCtx, freq);
