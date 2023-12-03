@@ -1,8 +1,6 @@
 import { Filter, Gain, LFO, Oscillator } from '../components';
 
 export default class Mixer {
-  private synthCtx: AudioContext;
-
   private mixerOut: StereoPannerNode;
 
   private oscillators: Record<number, Oscillator>;
@@ -14,7 +12,6 @@ export default class Mixer {
   private filter: Filter;
 
   constructor(synthCtx: AudioContext, oscillatorFrequencies: number[] = [440]) {
-    this.synthCtx = synthCtx;
     this.mixerOut = synthCtx.createStereoPanner();
     this.masterVolume = new Gain(synthCtx);
     this.filter = new Filter(synthCtx);

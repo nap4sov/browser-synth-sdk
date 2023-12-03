@@ -32,8 +32,8 @@ export default class ControlPanel {
         release: oscillators[0].getEnvelope().getReleaseTime(),
       },
       lfo: {
-        speed: 0,
-        amount: 0,
+        speed: lfo.getSpeed(),
+        amount: lfo.getAmount(),
       },
       filter: {
         type: filter.getType(),

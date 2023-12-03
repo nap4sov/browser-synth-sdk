@@ -1,6 +1,6 @@
 {
   "name": "browser-synth-sdk",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "repository": "github:nap4sov/browser-synth-sdk",
   "description": "",
   "main": "dist/index.js",

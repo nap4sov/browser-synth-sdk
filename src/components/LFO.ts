@@ -5,6 +5,10 @@ export default class LFO {
 
   private lfoGain: GainNode;
 
+  private speed: number = 0;
+
+  private amount: number = 0;
+
   constructor(synthCtx: AudioContext) {
     this.synthCtx = synthCtx;
     this.lfo = synthCtx.createOscillator();
@@ -24,10 +28,20 @@ export default class LFO {
   };
 
   setSpeed = (speed: number) => {
+    this.speed = speed;
     this.lfo.frequency.setValueAtTime(speed, this.synthCtx.currentTime);
   };
 
+  getSpeed = () => {
+    return this.speed;
+  };
+
   setAmount = (amount: number) => {
+    this.amount = amount;
     this.lfoGain.gain.setValueAtTime(amount, this.synthCtx.currentTime);
+  };
+
+  getAmount = () => {
+    return this.amount;
   };
 }
