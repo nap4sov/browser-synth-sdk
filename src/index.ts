@@ -1,5 +1,6 @@
 import Synthesizer from './synthesizer';
 import { SynthConfig } from './types';
+import { waveforms, filterTypes } from './constants';
 
 const createSynthesizer = ({ notes }: SynthConfig) => {
   if (!AudioContext) {
@@ -11,4 +12,4 @@ const createSynthesizer = ({ notes }: SynthConfig) => {
   return new Synthesizer({ audioContext, customNotes: notes || [] });
 };
 
-export { createSynthesizer, Synthesizer };
+export { createSynthesizer, Synthesizer, waveforms, filterTypes };
